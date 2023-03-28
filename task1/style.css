@@ -1,0 +1,14 @@
+input {
+    display: block;
+    margin-bottom: 5px;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+#message {
+    width: 300px;
+    background-color: #d78e8e;
+    text-align: center;
+    font-weight: bold;
+    line-height: 40px;
+}
