@@ -1,0 +1,16 @@
+.files-list {
+    list-style: none;
+}
+
+.file-item {
+    display: block;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+.file-item:hover:after {
+    content: "Удалить";
+    padding: 5px 10px;
+    background-color: red;
+    font-weight: bold;
+}
