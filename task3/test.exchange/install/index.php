@@ -3,6 +3,7 @@
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\ModuleManager;
 use Bitrix\Main\Config\Option;
+use Bitrix\Main\Application;
 
 Loc::loadMessages(__FILE__);
 
@@ -34,7 +35,7 @@ class test_exchange extends CModule
     {
 
         global $APPLICATION;
-
+        $this->InstallFiles();
         ModuleManager::registerModule($this->MODULE_ID);
 
         $APPLICATION->IncludeAdminFile(
@@ -45,6 +46,24 @@ class test_exchange extends CModule
 
     public function DoUninstall()
     {
+        $this->UnInstallFiles();
         ModuleManager::unRegisterModule($this->MODULE_ID);
+    }
+
+    function InstallFiles()
+    {
+        CopyDirFiles(
+            __DIR__ . "/components",
+            $_SERVER["DOCUMENT_ROOT"] . "/local/components",
+            true,
+            true
+        );
+        return true;
+    }
+
+    function UnInstallFiles()
+    {
+        DeleteDirFilesEx("/local/components/test");
+        return true;
     }
 }

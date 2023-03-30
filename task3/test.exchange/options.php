@@ -12,7 +12,9 @@ $module_id = htmlspecialcharsbx($request["mid"] != "" ? $request["mid"] : $reque
 Loader::includeModule($module_id);
 Loc::loadMessages(__FILE__);
 
-$pairsArray = [];
+
+$pairsArray = ExchangeRateHelper::getData('currency_list');
+$pairsArray = array_combine($pairsArray, $pairsArray);
 
 $aTabs = array(
     array(
@@ -21,10 +23,16 @@ $aTabs = array(
         "OPTIONS" => array(
             null,
             array(
+                "apikey",
+                Loc::getMessage("EXCH_API_KEY"),
+                '7e793671f37c0b385d646d49a9959d9b',
+                array("text", 50)
+            ),
+            array(
                 "pairs",
                 Loc::getMessage("EXCH_PAIRS"),
                 null,
-                array("selectbox", $pairsArray)
+                array("multiselectbox", $pairsArray)
             )
         )
     )
